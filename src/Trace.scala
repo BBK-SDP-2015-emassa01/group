@@ -42,7 +42,13 @@ object Trace {
     // TODO:
     // This one is tricky--we can't simply send a message here to print
     // the image, since the actors started by traceImage haven't necessarily
-    // finished yet.  Maybe print should be called elsewhere?
+    // finished yet.  Maybe print should be called elsewhere? <--need to move to a more appropriate place since
+    // render will spawn several actors (via traceImage), so print won't work here
     Coordinator.print
   }
 }
+
+//IN TRACE --> create ActorSystem --> start co-ordinator actor --> scene.traceImage(width, height)
+// IN SCENE --> create "tracer" actors to compute the colour of each pixel in a row and send to co-ordinator actor
+// IN CO-ORDINATOR --> co-ordinator actor receives messages from tracer actors to set the colour of each px
+// --> when var waiting = 0, PRINT --> END!

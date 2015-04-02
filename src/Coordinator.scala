@@ -2,8 +2,10 @@
 
 // TODO
 //
-// Make this an actor and write a message handler for at least the
-// set method.
+// Make this an actor (by modifying the existing co-ordinator object) and write a message handler for at least the
+// set method --> sets a pixel a particular color when going through the pixels row by row in Scene.traceImage eg set(x,y,color)
+// --> set then reduces the number of pixels to be set by 1 (note var waiting = the no. of pixels to be set)
+// --> once waiting = 0, then we can print, so ?call print from set method?
 //
 object Coordinator {
   def init(im: Image, of: String) = {
