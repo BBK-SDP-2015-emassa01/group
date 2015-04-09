@@ -36,6 +36,10 @@ object Trace {
     Coordinator.init(image, outfile)
 
     // TODO: Start the Coordinator actor.
+//    val system = ActorSystem("RayTracerSystem")
+//    val coordinator = system.actorOf(Props[Coordinator], "coordinator")
+//
+//    scene.setParentActor(coordinator) //added
 
     scene.traceImage(width, height)
 
@@ -44,9 +48,13 @@ object Trace {
     // the image, since the actors started by traceImage haven't necessarily
     // finished yet.  Maybe print should be called elsewhere? <--need to move to a more appropriate place since
     // render will spawn several actors (via traceImage), so print won't work here
-    Coordinator.print
+
+    //Coordinator.print
   }
+
 }
+
+
 
 //IN TRACE --> create ActorSystem --> start co-ordinator actor --> scene.traceImage(width, height)
 // IN SCENE --> create "tracer" actors to compute the colour of each pixel in a row and send to co-ordinator actor
