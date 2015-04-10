@@ -12,13 +12,12 @@ object Trace {
   var darkCount = 0
 
   def main(args: Array[String]): Unit = {
-    //if (args.length != 2) {
-    //  println("usage: scala Trace input.dat output.png")
-    //  System.exit(-1)
-    //}
+    if (args.length != 2) {
+      println("usage: scala Trace input.dat output.png")
+      System.exit(-1)
+    }
 
-    //val (infile, outfile) = (args(0), args(1))
-    val (infile, outfile) = ("input.dat", "output.png") // remove this line and uncomment all lines above for submission
+    val (infile, outfile) = (args(0), args(1))
     val scene = Scene.fromFile(infile)
 
     render(scene, outfile, Width, Height)
