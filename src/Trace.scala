@@ -35,10 +35,9 @@ object Trace {
     // Init the coordinator -- must be done before starting it.
     Coordinator.init(image, outfile)
 
-    // TODO: Start the Coordinator actor.
+    // TODO: Start the Coordinator actor. <-- ActorSystem and Coordinator started in Scene to minimise code required
 //    val system = ActorSystem("RayTracerSystem")
 //    val coordinator = system.actorOf(Props[Coordinator], "coordinator")
-//
 //    scene.setParentActor(coordinator) //added
 
     scene.traceImage(width, height)
@@ -53,10 +52,3 @@ object Trace {
   }
 
 }
-
-
-
-//IN TRACE --> create ActorSystem --> start co-ordinator actor --> scene.traceImage(width, height)
-// IN SCENE --> create "tracer" actors to compute the colour of each pixel in a row and send to co-ordinator actor
-// IN CO-ORDINATOR --> co-ordinator actor receives messages from tracer actors to set the colour of each px
-// --> when var waiting = 0, PRINT --> END!
