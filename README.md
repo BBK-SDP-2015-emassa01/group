@@ -1,5 +1,16 @@
 # A Simple Ray Tracer ~ Group Programming
 
+##Important >>
+********************************************************************************************************************************
+****Please note there are two versions of this; RayTracer and FasterRayTracer (in a separate package)****
+
+**RayTracer** **seems to run more slowly than the sequential version, but sets the counts in Trace (ie. rayCount, lightCount etc) correctly, so that they print correctly. **
+
+**FasterRayTracer** **runs faster, but in Intellij on a Macbook Pro the counts in Trace are not incremented correctly, although the image does print correctly (? the processor can not cope with multiple concurrent increments to the counts) **
+********************************************************************************************************************************
+
+##Ray Tracer
+
 A simple ray tracer parallelised using AKKA actors.
 
 A ray tracer works by casting rays from a virtual camera onto the scene, computing intersections with objects in the scene. 
@@ -8,7 +19,7 @@ be thought of as a grid, where each square represents a pixel of the generated i
 and refracted, producing secondary rays which may intersect other objects. All of these rays contribute to the final colour
 computed for the pixel.
 
-#Running the Code
+##Running the Code
 
 To run the code you will need an input file. A sample file is provided called input.dat.
 This consists of a sequence of directives; sphere and light.
