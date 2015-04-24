@@ -9,6 +9,15 @@
 **FasterRayTracer** **runs faster, but in Intellij on a Macbook Pro the counts in Trace are not incremented correctly, although the image does print correctly (? the processor can not cope with multiple concurrent increments to the counts) **
 ********************************************************************************************************************************
 
+##This Version By
+Joanne Tomlinson (jtomli03)
+
+Alex Wollenschlaeger (awolle01)
+
+Lilya Stevano
+
+Esha Massand
+
 ##Ray Tracer
 
 A simple ray tracer parallelised using AKKA actors.
