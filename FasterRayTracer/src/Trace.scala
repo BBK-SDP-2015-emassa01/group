@@ -10,8 +10,11 @@ object Trace {
   var hitCount = 0
   var lightCount = 0
   var darkCount = 0
+  var start: Long = 0
+
 
   def main(args: Array[String]): Unit = {
+    start = System.currentTimeMillis
     if (args.length != 2) {
       println("usage: scala Trace input.dat output.png")
       System.exit(-1)
@@ -27,6 +30,7 @@ object Trace {
     println("rays hit " + hitCount)
     println("light " + lightCount)
     println("dark " + darkCount)
+    println(System.currentTimeMillis - start)
   }
 
   def render(scene: Scene, outfile: String, width: Int, height: Int) = {
@@ -35,20 +39,12 @@ object Trace {
     // Init the coordinator -- must be done before starting it.
     Coordinator.init(image, outfile)
 
-    // TODO: Start the Coordinator actor. <-- ActorSystem and Coordinator started in Scene to minimise code required
-//    val system = ActorSystem("RayTracerSystem")
-//    val coordinator = system.actorOf(Props[Coordinator], "coordinator")
-//    scene.setParentActor(coordinator) //added
-
     scene.traceImage(width, height)
 
     // TODO:
     // This one is tricky--we can't simply send a message here to print
     // the image, since the actors started by traceImage haven't necessarily
-    // finished yet.  Maybe print should be called elsewhere? <--need to move to a more appropriate place since
-    // render will spawn several actors (via traceImage), so print won't work here
-
+    // finished yet.  Maybe print should be called elsewhere?
     //Coordinator.print
   }
-
 }
