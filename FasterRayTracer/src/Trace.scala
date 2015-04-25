@@ -14,7 +14,6 @@ object Trace {
 
 
   def main(args: Array[String]): Unit = {
-    start = System.currentTimeMillis
     if (args.length != 2) {
       println("usage: scala Trace input.dat output.png")
       System.exit(-1)
@@ -30,7 +29,6 @@ object Trace {
     println("rays hit " + hitCount)
     println("light " + lightCount)
     println("dark " + darkCount)
-    println(System.currentTimeMillis - start)
   }
 
   def render(scene: Scene, outfile: String, width: Int, height: Int) = {

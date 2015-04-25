@@ -1,6 +1,6 @@
 import akka.actor.{Actor, ActorRef}
 
-case class TraceImage(width: Int, height: Int, y: Int, scene: Scene, actor: ActorRef)
+case class TraceImage(width: Int, height: Int, y: Int, scene: Scene, coordinator: ActorRef, sinf: Double, cosf: Double, ss: Int, eye: Vector)
 case class SetPixel(x: Int, y: Int, c: Colour)
 case class SetParent()
 
@@ -51,18 +51,8 @@ class Coordinator extends Actor {
 
 class Tracer extends Actor{
 
-  val eye = Vector.origin
-  val angle = 90f // viewing angle
-  //val angle = 180f // fisheye
-  val frustum = (.5 * angle * math.Pi / 180).toFloat
-  val cosf = math.cos(frustum)
-  val sinf = math.sin(frustum)
-  // Anti-aliasing parameter -- divide each pixel into sub-pixels and
-  // average the results to get smoother images.
-  val ss = Trace.AntiAliasingFactor
-
   override def receive = {
-    case TraceImage(width, height, y, scene, coordinator) => {
+    case TraceImage(width, height, y, scene, coordinator, sinf, cosf, ss, eye) => {
 
       for (x <- 0 until width) {
         // This loop body can be sequential.

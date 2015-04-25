@@ -14,7 +14,7 @@ Joanne Tomlinson (jtomli03)
 
 Alex Wollenschlaeger (awolle01)
 
-Liliya Stefano (lstefa01)
+Liliya Stefanova (lstefa01)
 
 Esha Massand (emassa01)
 
