@@ -8,7 +8,7 @@
 //
 case class StartRayTracer(scene: Scene)
 case class SetPixel(x: Int, y: Int, c: Colour, darkCount: Int, lightCount: Int, rayCount: Int)
-//case class TraceImage(y: Int, scene: Scene)
+case class TraceImage(y: Int, scene: Scene)
 case class SetHitCount()
 
 object Coordinator{
