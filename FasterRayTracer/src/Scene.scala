@@ -53,6 +53,15 @@ class Scene private(val objects: List[Shape], val lights: List[Light]) {
 
   val ambient = .2f
   val background = Colour.black
+  val eye = Vector.origin
+  val angle = 90f // viewing angle
+  //val angle = 180f // fisheye
+  val frustum = (.5 * angle * math.Pi / 180).toFloat
+  val cosf = math.cos(frustum)
+  val sinf = math.sin(frustum)
+  // Anti-aliasing parameter -- divide each pixel into sub-pixels and
+  // average the results to get smoother images.
+  val ss = Trace.AntiAliasingFactor
 
   def traceImage(width: Int, height: Int) {
 
@@ -66,7 +75,7 @@ class Scene private(val objects: List[Shape], val lights: List[Light]) {
     val future = coordinator ? SetParent()
 
     for (y <- 0 until height) {
-      system.actorOf(Props[Tracer], "tracer" + y) ! TraceImage(width, height, y, this, coordinator)
+      system.actorOf(Props[Tracer], "tracer" + y) ! TraceImage(width, height, y, this, coordinator, sinf, cosf, ss, eye)
     }
 
     val result = Await.result(future, timeout.duration).asInstanceOf[Int] //a blocking future is required to prevent the rest of the method progressing prior to the trace process being completed. If this is not blocking then main in Trace will print the rayCount etc prior to the process completing.
